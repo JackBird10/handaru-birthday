@@ -5,98 +5,148 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Happy Birthday 🎉</title>
 
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
-
   <style>
-    html { scroll-behavior: smooth; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
-      margin: 0;
-      font-family: 'Poppins', sans-serif;
-      background: linear-gradient(135deg, #7f7fd5, #86a8e7, #91eae4);
-      color: #333;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #FFE5E5 0%, #FFF4E0 50%, #E5F3FF 100%);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 40px 20px;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* floating emoji */
+    .floating-elements {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 1;
+    }
+    .float-item {
+      position: absolute;
+      font-size: 40px;
+      opacity: 0.6;
+      animation: float 8s ease-in-out infinite;
+    }
+    .float-item:nth-child(1){left:10%;top:15%}
+    .float-item:nth-child(2){left:80%;top:20%}
+    .float-item:nth-child(3){left:15%;top:75%}
+    .float-item:nth-child(4){left:85%;top:70%}
+    .float-item:nth-child(5){left:50%;top:10%}
+
+    @keyframes float {
+      0%,100%{transform:translateY(0)}
+      50%{transform:translateY(-20px)}
+    }
+
+    /* music button */
+    .music-control {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: white;
+      padding: 12px 18px;
+      border-radius: 50px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+      cursor: pointer;
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      z-index: 10;
+      transition: 0.3s;
+    }
+    .music-control.playing {
+      background: linear-gradient(135deg, #FF6B9D, #FFA06B);
+      color: white;
+    }
+
+    /* main card */
+    .container {
+      background: white;
+      border-radius: 40px;
+      padding: 70px 45px;
+      max-width: 600px;
+      width: 100%;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.08);
       text-align: center;
+      z-index: 2;
+      animation: slideUp .8s ease;
     }
 
-    .card {
-      backdrop-filter: blur(10px);
-      background: rgba(255,255,255,0.88);
-      padding: 40px;
-      border-radius: 24px;
-      box-shadow: 0 15px 35px rgba(0,0,0,0.2);
-      max-width: 520px;
-      margin: 80px auto 40px;
-      animation: fadeIn 1.2s ease;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    h1 { font-size: 2.4rem; margin-bottom: 8px; }
-    h2 { font-size: 1.4rem; margin-bottom: 20px; color: #ff5f7e; }
-
-    p {
-      font-size: 1.05rem;
-      line-height: 1.6;
-      margin-bottom: 14px;
+    @keyframes slideUp {
+      from {opacity:0; transform:translateY(30px)}
+      to {opacity:1; transform:translateY(0)}
     }
 
     .photo {
       width: 180px;
       height: 180px;
-      object-fit: cover;
       border-radius: 50%;
-      margin-bottom: 20px;
-      border: 5px solid #ff5f7e;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      object-fit: cover;
+      border: 6px solid #FF6B9D;
+      margin-bottom: 25px;
+      box-shadow: 0 8px 25px rgba(0,0,0,.15);
+    }
+
+    h1 {
+      font-size: 38px;
+      color: #2D3748;
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      font-size: 28px;
+      background: linear-gradient(135deg,#667EEA,#764BA2);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 25px;
+    }
+
+    p {
+      font-size: 16.5px;
+      line-height: 1.8;
+      color: #4A5568;
+      margin-bottom: 16px;
     }
 
     .controls {
-      margin-top: 22px;
-      display: flex;
-      gap: 12px;
-      justify-content: center;
+      margin: 20px 0;
     }
 
     .controls button {
       border: none;
-      padding: 10px 18px;
+      padding: 10px 22px;
       border-radius: 999px;
-      background: #7f7fd5;
-      color: #fff;
+      background: linear-gradient(135deg,#FF6B9D,#FFA06B);
+      color: white;
       font-weight: 600;
       cursor: pointer;
     }
 
-    .controls button:hover { opacity: 0.85; }
-
     .footer {
-      margin-top: 22px;
-      font-size: 0.9rem;
-      color: #666;
+      margin-top: 30px;
+      color: #718096;
+      font-size: 15px;
     }
 
-    /* ===== RECAP ===== */
-
+    /* recap section */
     .recap {
-      padding: 80px 20px;
-      background: #fff;
+      margin-top: 60px;
     }
 
     .recap h2 {
-      font-size: 2rem;
-      margin-bottom: 8px;
-      color: #ff5f7e;
+      margin-bottom: 6px;
     }
 
     .recap-text {
+      color: #718096;
       margin-bottom: 30px;
-      color: #666;
     }
-
-    /* videos */
 
     .gif-row {
       display: flex;
@@ -108,99 +158,95 @@
 
     .gif-row video {
       width: 220px;
-      border-radius: 18px;
+      border-radius: 20px;
       box-shadow: 0 10px 25px rgba(0,0,0,0.18);
-      opacity: 0;
-      transform: translateY(20px);
-      transition: all 0.6s ease;
     }
-
-    .gif-row video.show {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* gallery — FIX TIDAK KE POTONG */
 
     .gallery {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 20px;
-      max-width: 900px;
-      margin: 0 auto;
+      grid-template-columns: repeat(auto-fit, minmax(160px,1fr));
+      gap: 18px;
+      margin-top: 25px;
     }
-
-    .gallery figure { margin: 0; }
 
     .gallery img {
       width: 100%;
       height: auto;
-      max-height: 300px;
       object-fit: contain;
-      background: #f4f4f4;
+      background: #F7FAFC;
       border-radius: 18px;
       box-shadow: 0 10px 25px rgba(0,0,0,0.18);
-      opacity: 0;
-      transform: translateY(20px);
-      transition: all 0.6s ease;
-    }
-
-    .gallery img.show {
-      opacity: 1;
-      transform: translateY(0);
     }
 
     figcaption {
-      margin-top: 8px;
-      font-size: 0.9rem;
+      font-size: 14px;
       color: #555;
+      margin-top: 6px;
     }
 
-    canvas#confetti {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
+    .from {
+      margin-top: 40px;
+      font-size: 16px;
+      color: #718096;
+    }
+    .from strong {
+      color: #4A5568;
     }
   </style>
 </head>
 
 <body>
 
-  <!-- HERO -->
-  <div class="card">
-    <img src="foto-handaru.jpg" class="photo" alt="Handaru Aulia Hanif" />
+<div class="floating-elements">
+  <div class="float-item">🎈</div>
+  <div class="float-item">🎉</div>
+  <div class="float-item">✨</div>
+  <div class="float-item">🎁</div>
+  <div class="float-item">🎊</div>
+</div>
 
-    <h1>🎂 Happy Birthday 🎂</h1>
-    <h2>Handaru Aulia Hanif</h2>
+<div class="music-control" onclick="toggleMusic()" id="musicControl">
+  🎵 <span id="musicText">Play Music</span>
+</div>
 
-<div class="controls">
-      <button onclick="toggleMusic()">⏯ Music</button>
-    </div>
+<audio id="bgm" loop>
+  <source src="music.mp3" type="audio/mpeg" />
+</audio>
 
-<p> play dulu lah musiknyaa baru bacaa wkwk </p>
+<div class="container">
 
-    <p>
-      Alhamdulillah Udah ke-25 🎉<br />
-      Semoga di usia ini, hani selalu diberikan kesehatan,
-      kebahagiaan, dan kemudahan dalam setiap langkahnya. 🌟 kita sebagai temen cuman bisa dukung ya han. kalo kata kutipan yg gua baca:
-      Dua puluh lima adalah usia di mana teman-temanmu mulai terbagi dua: "mereka yang sudah menggendong bayi, 
-      dan mereka yang masih menggendong tas ransel mencari jati diri di sela-sela lembur kantor". wkwk, kayanya kita semua masih yg kedua, 
-      anyway tetep semangat ya han, kabarin klo mau wisudaa wkwk
-    </p>
-    <p>
-      Di usia dua puluh lima, kau akan menyadari bahwa hidup bukan lagi soal siapa yang paling cepat sampai, 
-      tapi siapa yang paling mampu bertahan dalam ketidakpastian." — Tereliye
-    </p>
-    <p>"Dulu aku pikir usia dua puluh lima adalah puncak dunia. Ternyata, 
-    ini hanyalah lembah di mana kita baru mulai belajar cara mendaki yang benar." — Alvi Syahrin</p>
+  <img src="foto-handaru.jpg" class="photo" alt="Handaru Aulia Hanif" />
 
-    <div class="footer">
-      Dibuat dengan ❤️ effort maksudnya wkwk
-    </div>
+  <h1>🎂 Happy Birthday 🎂</h1>
+  <h2>Handaru Aulia Hanif</h2>
+
+  <div class="controls">
+    <button onclick="toggleMusic()">⏯ Music</button>
   </div>
 
+  <p> play dulu lah musiknyaa baru bacaa wkwk </p>
 
-  <!-- RECAP -->
+  <p>
+    Alhamdulillah Udah ke-25 🎉<br />
+    Semoga di usia ini, hani selalu diberikan kesehatan,
+    kebahagiaan, dan kemudahan dalam setiap langkahnya. 🌟 kita sebagai temen cuman bisa dukung ya han. kalo kata kutipan yg gua baca:
+    Dua puluh lima adalah usia di mana teman-temanmu mulai terbagi dua: "mereka yang sudah menggendong bayi, 
+    dan mereka yang masih menggendong tas ransel mencari jati diri di sela-sela lembur kantor". wkwk, kayanya kita semua masih yg kedua, 
+    anyway tetep semangat ya han, kabarin klo mau wisudaa wkwk
+  </p>
+
+  <p>
+    Di usia dua puluh lima, kau akan menyadari bahwa hidup bukan lagi soal siapa yang paling cepat sampai, 
+    tapi siapa yang paling mampu bertahan dalam ketidakpastian." — Tereliye
+  </p>
+
+  <p>"Dulu aku pikir usia dua puluh lima adalah puncak dunia. Ternyata, 
+  ini hanyalah lembah di mana kita baru mulai belajar cara mendaki yang benar." — Alvi Syahrin</p>
+
+  <div class="footer">
+    Dibuat dengan ❤️ effort maksudnya wkwk
+  </div>
+
   <section class="recap">
     <h2>🎞️ The joget joget</h2>
     <p class="recap-text">joget terooosss</p>
@@ -210,104 +256,54 @@
       <video src="moment2.mp4" autoplay loop muted playsinline></video>
     </div>
 
-    <hr style="margin:60px auto;max-width:200px;border:none;border-top:2px dashed #ddd" />
-
     <h2>📸 Captured Hani</h2>
     <p class="recap-text">masih banyak sebenarnya tapi nunggu hani balik jkt dulu dh. "Segera angkat kaki dari bali dan ditunggu comeback nya di jakarta"</p>
 
     <div class="gallery">
       <figure>
-        <img src="kenangan1.jpg" alt="Kenangan 1" />
+        <img src="kenangan1.jpg" />
         <figcaption>ahahahah</figcaption>
       </figure>
       <figure>
-        <img src="kenangan2.jpg" alt="Kenangan 2" />
+        <img src="kenangan2.jpg" />
         <figcaption>😂</figcaption>
       </figure>
       <figure>
-        <img src="kenangan3.jpg" alt="Kenangan 3" />
+        <img src="kenangan3.jpg" />
         <figcaption>wehhh</figcaption>
       </figure>
     </div>
   </section>
 
-  <!-- AUDIO -->
-  <audio id="bgm" loop>
-    <source src="music.mp3" type="audio/mpeg" />
-  </audio>
+  <div class="from">
+    From your bestie <strong>Farhan & Ridho, iyung lagi sakit dia kasian wkwk</strong>
+  </div>
 
-  <script>
-    // scroll animation
-    const items = document.querySelectorAll('.gallery img, .gif-row video');
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) entry.target.classList.add('show');
-      });
-    }, { threshold: 0.2 });
-    items.forEach(el => observer.observe(el));
+</div>
 
-    // music control
-    const bgm = document.getElementById('bgm');
-    let started = false;
+<script>
+  const bgm = document.getElementById('bgm');
+  const musicControl = document.getElementById('musicControl');
+  const musicText = document.getElementById('musicText');
+  let playing = false;
 
-    function toggleMusic() {
-      bgm.paused ? bgm.play() : bgm.pause();
+  function toggleMusic() {
+    if (playing) {
+      bgm.pause();
+      musicControl.classList.remove('playing');
+      musicText.textContent = 'Play Music';
+    } else {
+      bgm.play().catch(()=>{});
+      musicControl.classList.add('playing');
+      musicText.textContent = 'Playing...';
     }
+    playing = !playing;
+  }
 
-    function startMusicOnce() {
-      if (!started) {
-        bgm.play().catch(()=>{});
-        started = true;
-        document.removeEventListener('click', startMusicOnce);
-        document.removeEventListener('touchstart', startMusicOnce);
-      }
-    }
-
-    document.addEventListener('click', startMusicOnce);
-    document.addEventListener('touchstart', startMusicOnce);
-
-    function shareWA() {
-      const url = encodeURIComponent(location.href);
-      window.open('https://wa.me/?text=' + url, '_blank');
-    }
-
-    // confetti (5 detik)
-    const c = document.createElement('canvas');
-    c.id = 'confetti';
-    document.body.appendChild(c);
-    const ctx = c.getContext('2d');
-    let w, h, ps = [];
-
-    function resize() {
-      w = c.width = innerWidth;
-      h = c.height = innerHeight;
-    }
-    addEventListener('resize', resize);
-    resize();
-
-    for (let i = 0; i < 120; i++) {
-      ps.push({ x: Math.random()*w, y: Math.random()*h, v: 1+Math.random()*2, s: 2+Math.random()*3 });
-    }
-
-    const start = Date.now();
-    (function anim() {
-      if (Date.now() - start > 5000) {
-        c.remove();
-        return;
-      }
-      ctx.clearRect(0,0,w,h);
-      ps.forEach(p => {
-        p.y += p.v;
-        if (p.y > h) p.y = 0;
-        ctx.fillRect(p.x, p.y, p.s, p.s);
-      });
-      requestAnimationFrame(anim);
-    })();
-  </script>
-
-<div class="from">
-            From your bestie <strong>Farhan & Ridho, iyung lagi sakit dia kasian wkwk</strong>
-        </div>
+  document.addEventListener('click', () => {
+    if (!playing) toggleMusic();
+  }, { once: true });
+</script>
 
 </body>
 </html>
